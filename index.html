@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Hitung Belanja</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛒 Aplikasi Hitung Belanja</h1>
+            <p>Kelola belanja Anda dengan mudah dan cepat</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Form Input -->
+            <div class="input-section">
+                <h2>Tambah Item Belanja</h2>
+                <div class="form-group">
+                    <label for="namaItem">Nama Item:</label>
+                    <input type="text" id="namaItem" placeholder="Contoh: Buku, Pulpen, dll">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="hargaItem">Harga (Rp):</label>
+                        <input type="number" id="hargaItem" placeholder="0" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="jumlahItem">Jumlah:</label>
+                        <input type="number" id="jumlahItem" placeholder="1" value="1" min="1">
+                    </div>
+                </div>
+                <button class="btn-add" onclick="tambahItem()">+ Tambah Item</button>
+            </div>
+
+            <!-- Daftar Belanja -->
+            <div class="cart-section">
+                <h2>Daftar Belanja</h2>
+                <div class="cart-table-wrapper">
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Item</th>
+                                <th>Harga</th>
+                                <th>Jumlah</th>
+                                <th>Subtotal</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cartBody">
+                            <tr class="empty-row">
+                                <td colspan="6">Belum ada item. Tambahkan item terlebih dahulu!</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Ringkasan Belanja -->
+            <div class="summary-section">
+                <div class="summary-box">
+                    <div class="summary-item">
+                        <span class="label">Jumlah Item:</span>
+                        <span class="value" id="totalItems">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Subtotal:</span>
+                        <span class="value" id="subtotal">Rp 0</span>
+                    </div>
+                    <div class="summary-item">
+                        <label for="diskon">Diskon (%):</label>
+                        <input type="number" id="diskon" placeholder="0" value="0" min="0" max="100" onchange="hitungTotal()">
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Potongan Diskon:</span>
+                        <span class="value" id="potonganDiskon">Rp 0</span>
+                    </div>
+                    <div class="summary-item">
+                        <label for="pajak">Pajak/PPN (%):</label>
+                        <input type="number" id="pajak" placeholder="0" value="0" min="0" max="100" onchange="hitungTotal()">
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Pajak:</span>
+                        <span class="value" id="pajakAmount">Rp 0</span>
+                    </div>
+                    <div class="summary-item">
+                        <label for="biayaKirim">Biaya Pengiriman (Rp):</label>
+                        <input type="number" id="biayaKirim" placeholder="0" value="0" min="0" onchange="hitungTotal()">
+                    </div>
+                </div>
+
+                <div class="total-box">
+                    <h3>Total Belanja</h3>
+                    <div class="total-amount" id="totalBelanja">Rp 0</div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn-print" onclick="cetakBelanja()">🖨️ Cetak</button>
+                    <button class="btn-reset" onclick="resetBelanja()">🔄 Reset</button>
+                    <button class="btn-export" onclick="exportCSV()">📥 Export CSV</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2026 Aplikasi Hitung Belanja. Dibuat dengan ❤️</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
